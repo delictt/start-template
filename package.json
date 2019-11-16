@@ -1,0 +1,33 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "normalize.css": "latest",
+    "jquery": "latest",
+    "bootstrap" : "latest",
+    "@fortawesome/fontawesome-free": "latest",
+    "animate.css": "latest",
+    "hamburgers": "latest",
+    "owl.carousel": "latest",
+    "wowjs": "latest"
+  },
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "latest",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-npm-dist": "^1.0.3",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-uglifyjs": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
