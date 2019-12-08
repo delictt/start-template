@@ -8,6 +8,8 @@ const uglify = require('gulp-uglifyjs');
 const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const cssnano = require('gulp-cssnano');
+const imagemin = require('gulp-imagemin')
+const pngquant = require('imagemin-pngquant')
 
 
 // Sass compilation
@@ -122,6 +124,42 @@ const cssnano = require('gulp-cssnano');
 
         gulp.task('fontawesome', gulp.parallel('fafont','facss'));
 
+
+
+    // build
+
+	    gulp.task('build-css',function(){
+	        return gulp.src('app/css/**')
+	        .pipe(gulp.dest('dist/css'))
+	    });
+
+	    gulp.task('build-fonts',function(){
+	        return gulp.src('app/fonts/**')
+	        .pipe(gulp.dest('dist/fonts'))
+	    });
+
+	    gulp.task('build-js',function(){
+	        return gulp.src('app/js/**')
+	        .pipe(gulp.dest('dist/js'))
+	    });
+
+	    gulp.task('build-html',function(){
+	        return gulp.src('app/*.html')
+	        .pipe(gulp.dest('dist'))
+	    });
+
+	    // imagemin
+
+	        gulp.task('img', function() {
+	            return gulp.src('app/img/**/*')
+	            .pipe(imagemin({
+	                interlaced: true,
+	                progressive: true,
+	                svgoPlugins: [{removeViewBox: false}],
+	                use: [pngquant()]
+	            }))
+	            .pipe(gulp.dest('dist/img'))
+	        });
 
 
 
