@@ -55,8 +55,6 @@ const pngquant = require('imagemin-pngquant')
 
 // Libs
 
-  // libs list
-
     // css libs
 
       var csslibs = [
@@ -75,8 +73,6 @@ const pngquant = require('imagemin-pngquant')
         'app/libs/wowjs/dist/wow.min.js',
         'app/libs/scroll.js'
       ]
-
-  // libs tasks
 
     // pipe libs
 
@@ -106,66 +102,60 @@ const pngquant = require('imagemin-pngquant')
 
     // fontawesome
 
-      // fontawesome fonts
-
         gulp.task('fafont', function() {
             return gulp.src('node_modules/@fortawesome/fontawesome-free/webfonts/*.+(eot|ttf|woff|woff2)')
                 .pipe(gulp.dest('app/fonts/fontawesome/webfonts'))
         });
-
-      // fontawesome css
 
         gulp.task('facss', function() {
             return gulp.src('node_modules/@fortawesome/fontawesome-free/css/all.min.css')
                 .pipe(gulp.dest('app/fonts/fontawesome/css'))
         });
 
-      // pipe fontawesome
-
         gulp.task('fontawesome', gulp.parallel('fafont','facss'));
 
 
 
-    // build
+  // build
 
-	    gulp.task('build-css',function(){
-	        return gulp.src('app/css/**')
-	        .pipe(gulp.dest('dist/css'))
-	    });
+    gulp.task('build-css',function(){
+        return gulp.src('app/css/**')
+        .pipe(gulp.dest('dist/css'))
+    });
 
-	    gulp.task('build-fonts',function(){
-	        return gulp.src('app/fonts/**')
-	        .pipe(gulp.dest('dist/fonts'))
-	    });
+    gulp.task('build-fonts',function(){
+        return gulp.src('app/fonts/**')
+        .pipe(gulp.dest('dist/fonts'))
+    });
 
-	    gulp.task('build-js',function(){
-	        return gulp.src('app/js/**')
-	        .pipe(gulp.dest('dist/js'))
-	    });
+    gulp.task('build-js',function(){
+        return gulp.src('app/js/**')
+        .pipe(gulp.dest('dist/js'))
+    });
 
-	    gulp.task('build-html',function(){
-	        return gulp.src('app/*.html')
-	        .pipe(gulp.dest('dist'))
-	    });
+    gulp.task('build-html',function(){
+        return gulp.src('app/*.html')
+        .pipe(gulp.dest('dist'))
+    });
 
-	    // imagemin
+    // imagemin
 
-	        gulp.task('img', function() {
-	            return gulp.src('app/img/**/*')
-	            .pipe(imagemin({
-	                interlaced: true,
-	                progressive: true,
-	                svgoPlugins: [{removeViewBox: false}],
-	                use: [pngquant()]
-	            }))
-	            .pipe(gulp.dest('dist/img'))
-	        });
-
-
+        gulp.task('img', function() {
+            return gulp.src('app/img/**/*')
+            .pipe(imagemin({
+                interlaced: true,
+                progressive: true,
+                svgoPlugins: [{removeViewBox: false}],
+                use: [pngquant()]
+            }))
+            .pipe(gulp.dest('dist/img'))
+        });
 
 
 
 
-gulp.task('libsinit', gulp.series('libs','cssmin','jsmin','fontawesome'))
 
+
+gulp.task('libsinit', gulp.series('libs','cssmin','jsmin','fontawesome'));
 gulp.task('watch', gulp.parallel('sass', 'browser-sync', 'watch'));
+gulp.task('build', gulp.parallel('build-css', 'build-fonts', 'build-js', 'build-html','img'));
