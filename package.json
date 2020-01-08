@@ -11,7 +11,10 @@
     "animate.css": "latest",
     "hamburgers": "latest",
     "owl.carousel": "latest",
-    "wowjs": "latest"
+    "wowjs": "latest",
+    "magnific-popup": "^1.1.0",
+    "slick-slider": "latest",
+    "mixitup": "latest",
   },
   "devDependencies": {
     "browser-sync": "latest",
