@@ -162,6 +162,6 @@ const pngquant = require('imagemin-pngquant')
 
 
 
-gulp.task('libsinit', gulp.series('libs','cssmin','jsmin','fontawesome'));
+gulp.task('libsinit', gulp.series('libs','cssmin','jsmin'));
 gulp.task('watch', gulp.parallel('sass', 'browser-sync', 'watch'));
 gulp.task('build', gulp.parallel('build-css', 'build-fonts', 'build-js', 'build-html','img'));
