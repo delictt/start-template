@@ -1,8 +1,8 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const pug = require('gulp-pug');
 const browserSync = require('browser-sync');
 const npmDist = require('gulp-npm-dist');
-const rename = require('gulp-rename');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglifyjs');
 const autoprefixer = require('gulp-autoprefixer');
@@ -29,6 +29,16 @@ const pngquant = require('imagemin-pngquant')
         .pipe(browserSync.reload({stream: true}))
   });
 
+// Pug
+
+  gulp.task('pug', function(){
+    return gulp.src('app/pug/pages/*.pug')
+      .pipe(pug({
+        pretty: true,
+        basedir: 'app/pug/components'
+      }))
+      .pipe(gulp.dest('app/'))
+  });
 
 // Browser sync
 
@@ -48,6 +58,7 @@ const pngquant = require('imagemin-pngquant')
 
   gulp.task('watch', function() {
       gulp.watch('app/sass/*.sass', gulp.parallel('sass'));
+      gulp.watch('app/pug/**/*.pug', gulp.parallel('pug'));
       gulp.watch('app/*.html').on('change', browserSync.reload);
       gulp.watch('app/js/*.js').on('change', browserSync.reload);
   });
@@ -76,7 +87,7 @@ const pngquant = require('imagemin-pngquant')
         'app/libs/wowjs/dist/wow.min.js',
         'app/libs/scroll.js',
         'app/libs/magnific-popup/dist/jquery.magnific-popup.min.js',
-		'app/libs/slick-slider/slick/slick.min.js',
+		    'app/libs/slick-slider/slick/slick.min.js',
         'app/libs/mixitup/dist/mixitup.min.js',
       ]
 
@@ -163,5 +174,5 @@ const pngquant = require('imagemin-pngquant')
 
 
 gulp.task('libsinit', gulp.series('libs','cssmin','jsmin'));
-gulp.task('watch', gulp.parallel('sass', 'browser-sync', 'watch'));
+gulp.task('watch', gulp.parallel('sass', 'pug', 'browser-sync', 'watch'));
 gulp.task('build', gulp.parallel('build-css', 'build-fonts', 'build-js', 'build-html','img'));
