@@ -57,7 +57,7 @@ const pngquant = require('imagemin-pngquant')
 
 
   gulp.task('watch', function() {
-      gulp.watch('app/sass/*.sass', gulp.parallel('sass'));
+      gulp.watch('app/sass/**/*.sass', gulp.parallel('sass'));
       gulp.watch('app/pug/**/*.pug', gulp.parallel('pug'));
       gulp.watch('app/*.html').on('change', browserSync.reload);
       gulp.watch('app/js/*.js').on('change', browserSync.reload);
@@ -112,22 +112,6 @@ const pngquant = require('imagemin-pngquant')
           .pipe(uglify())
           .pipe(gulp.dest('app/js'))
       })
-
-    // fontawesome
-
-        gulp.task('fafont', function() {
-            return gulp.src('node_modules/@fortawesome/fontawesome-free/webfonts/*.+(eot|ttf|woff|woff2)')
-                .pipe(gulp.dest('app/fonts/fontawesome/webfonts'))
-        });
-
-        gulp.task('facss', function() {
-            return gulp.src('node_modules/@fortawesome/fontawesome-free/css/all.min.css')
-                .pipe(gulp.dest('app/fonts/fontawesome/css'))
-        });
-
-        gulp.task('fontawesome', gulp.parallel('fafont','facss'));
-
-
 
   // build
 
